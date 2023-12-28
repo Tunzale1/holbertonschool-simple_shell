@@ -31,11 +31,16 @@ int main(void)
 			free(buf);
 			break;
 		}
+		if (read > 0 && buf[read - 1] == '\n')
+		{
+			buf[read - 1] = '\0';
+		}
 		array = token_input(buf);
 
 		execute(array);
 
-		free_array(buf, array);
+
 	}
+	free_array(buf, array);
 	return (0);
 }

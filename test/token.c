@@ -11,7 +11,7 @@
 
 char **token_input(char *input)
 {
-	char *token;
+	char *token = NULL;
 	int i = 0;
 	char **array = malloc(sizeof(char *) * 1024);
 
@@ -22,6 +22,15 @@ char **token_input(char *input)
 		token = strtok(NULL, "\t\n");
 		i++;
 	}
-	array[i] = NULL;
-	return (array);
+	if (array[i] == NULL)
+	{
+		return (array);
+	}
+	if (strcmp(array[0], "exit") == 0 && array[1] == NULL)
+	{
+		free(array[0]);
+		exit(0);
+	}
+	token = strdup(array[0]);
+	return (0);
 }
