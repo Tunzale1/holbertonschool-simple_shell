@@ -5,8 +5,8 @@
  *
  * @argv: Path to the executable file
  * @input: Input put by the user of this shell
- *
- * Return: no return, void function
+ *  Return: no return, void function
+ */
  
 
 void executable(char *argv[], char *input)
@@ -51,32 +51,3 @@ void executable(char *argv[], char *input)
 	}
 }
 
-
-*/
-
-/**
- * execve - execute
- *
- * @array - array
- *
- * Return: void
- */
-
-
-void execute(char **array)
-{
-	int status;
-
-	pid_t child_pid = fork();
-
-	if (child_pid == 0)
-	{
-		execvp(array[0], array);
-		perror("ERROR");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		wait(&status);
-	}
-}
