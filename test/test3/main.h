@@ -14,6 +14,6 @@
 
 
 char **token_input(char *input);
-void execute(char **array);
-void free_array(char *buf, char **array);
+void executable(char *argv[], char *input);
+void free_array(char **array);
 #endif
