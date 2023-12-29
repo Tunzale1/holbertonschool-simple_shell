@@ -10,7 +10,7 @@ The man page is a file wich explains in detail how Simple Shell works. If you wa
 ## Compilation
 To compile the program this command has to be executed:
 - $ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
-To run the shell is like this:
+* To run the shell is like this:
 - $ ./hsh
 
 ## List of built-in commands
@@ -18,6 +18,8 @@ This list is of the built-in commands, apart from those found in the PATH.
 - env - Displays the current environment
 - exit - Causes the shell to terminate
 - cd - Changes the current directory of the process
+- ls - To list files and directory
+- pwd - print working directory
 
 ## Authors
 - Imanova Tunzala
