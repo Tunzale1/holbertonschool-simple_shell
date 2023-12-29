@@ -7,7 +7,6 @@
  * @input: Input put by the user of this shell
  *  Return: no return, void function
  */
- 
 
 void executable(char *argv[], char *input)
 {
