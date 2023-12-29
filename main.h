@@ -14,8 +14,8 @@
 
 extern char **environ;
 
-char **token_input(char *input);
-void execute(char **array);
+void token_input(char *input);
+void executable(char *argv[], char *input);
 char *_getpath(char *cmd);
 void print_env(void);
 #endif
