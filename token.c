@@ -3,34 +3,51 @@
 /**
  * token_input - tokenize the input
  *
- * @input - input string to be tokenized
+ * @input: input string to be tokenized
  *
  * Return: tokens
  */
 
-
-char **token_input(char *input)
+void token_input(char *input)
 {
-	char *token = NULL;
-	int i = 0;
-	char **array = malloc(sizeof(char *) * 1024);
+	char *split = NULL;
+	char *tokens[1024] = { NULL };
+	int index = 0;
 
-	token = strtok(input, " ");
-	while (token)
+	split = strtok(input, " ");
+	while (split)
 	{
-		array[i] = token;
-		token = strtok(NULL, "\t\n");
-		i++;
+		if (strlen(split) > 0)
+		{
+			tokens[index] = split;
+			index += 1;
+		}
+		split = strtok(NULL, " ");
 	}
-	if (array[i] == NULL)
+	if (tokens[0] == NULL)
 	{
-		return (array);
+		return;
 	}
-	if (strcmp(array[0], "exit") == 0 && array[1] == NULL)
+	if (strcmp(tokens[0], "env") == 0)
 	{
-		free(array[0]);
+		print_env();
+		return;
+	}
+	if (strcmp(tokens[0], "exit") == 0 && tokens[1] == NULL)
+	{
+		free(tokens[0]);
 		exit(0);
 	}
-	token = strdup(array[0]);
-	return (0);
+	split = strdup(tokens[0]);
+	tokens[0] = _getpath(tokens[0]);
+	if (tokens[0] != NULL)
+	{
+		free(split);
+		executable(tokens, input);
+		free(tokens[0]);
+		return;
+	}
+	fprintf(stderr, "./hsh: 1: %s: not found\n", split);
+	free(split);
+	exit(127);
 }

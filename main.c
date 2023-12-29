@@ -8,39 +8,31 @@
 
 int main(void)
 {
-	char *buf = NULL;
-	char **array;
-	/* char *input, *tokens; */
-	size_t bufsize = 0;
+	char *input = NULL;
+	size_t len_input = 0;
 	ssize_t read = 0;
 
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
 		{
-			printf("#cisfun$ ");
+			printf("$ ");
+			fflush(stdout);
 		}
 
-		read = getline(&buf, &bufsize, stdin);
-
-		if (read == -1)
+		read = getline(&input, &len_input, stdin);
+		if (read == EOF)
 		{
-			if (isatty(STDIN_FILENO))
-				printf("\n");
-
-			free(buf);
-			break;
+			free(input);
+			exit(0);
 		}
-		if (read > 0 && buf[read - 1] == '\n')
+		if (read > 0 && input[read - 1] == '\n')
 		{
-			buf[read - 1] = '\0';
+			input[read - 1] = '\0';
 		}
-		array = token_input(buf);
-
-		execute(array);
-
-
+		token_input(input);
 	}
-	free_array(buf, array);
+	free(input);
 	return (0);
 }
+
